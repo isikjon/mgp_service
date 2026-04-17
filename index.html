@@ -127,7 +127,7 @@
         font-weight: 500;
         padding: 20px 14px;
         border-radius: 8px;
-        transition: background .2s, color .2s;
+        transition: background .2s, color .2s, transform .2s, box-shadow .2s;
         white-space: nowrap;
     }
     .main-nav a:hover, .main-nav a.active {
@@ -135,16 +135,21 @@
         color: #fff;
     }
     .main-nav .nav-catalog {
-        background: transparent;
-        color: rgba(255,255,255,.85);
-        font-weight: 500;
-        padding: 20px 14px;
-        margin-left: 0;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        padding: 11px 22px;
+        margin-left: 8px;
+        border: 2px solid rgba(0,0,0,.35);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,.22);
     }
     .main-nav .nav-catalog:hover,
     .main-nav .nav-catalog.active {
-        background: rgba(255,255,255,.12);
+        background: #ff9b2f;
         color: #fff;
+        transform: translateY(-1px) scale(1.03);
+        box-shadow: 0 7px 14px rgba(0,0,0,.3);
     }
 
     .header-right {
@@ -218,18 +223,13 @@
     }
 
     /* ─── HERO BANNER ─── */
-    .hero-banner {
-        background: radial-gradient(circle at 78% 36%, rgba(255,255,255,.12), rgba(255,255,255,0) 240px),
-                    linear-gradient(90deg, #163a61 0%, #0f2f53 100%);
-        padding: 16px 0 20px;
-        color: #fff;
-    }
+    .hero-banner { margin-bottom: 20px; }
     .hero-panel {
         background: linear-gradient(rgba(10, 23, 41, .55), rgba(10, 23, 41, .55)),
                     url('https://remgydromash.ru/bitrix/templates/rgm/img/1920x1080/06.jpg') left center/cover no-repeat;
         border-radius: 16px;
         border: 1px solid rgba(255,255,255,.1);
-        padding: 22px 34px 20px;
+        padding: 18px 24px 18px;
         overflow: hidden;
     }
     .hero-tagline {
@@ -245,17 +245,17 @@
         text-transform: uppercase;
     }
     .hero-banner h1 {
-        font-size: 52px;
+        font-size: 48px;
         font-weight: 700;
-        line-height: 1.1;
+        line-height: 1.15;
         margin-bottom: 10px;
-        max-width: 760px;
+        max-width: 740px;
     }
     .hero-banner .hero-desc {
-        font-size: 36px;
+        font-size: 17px;
         color: rgba(255,255,255,.9);
-        max-width: 760px;
-        line-height: 1.45;
+        max-width: 690px;
+        line-height: 1.55;
     }
     .hero-actions {
         margin-top: 18px;
@@ -265,8 +265,8 @@
     }
     .hero-actions .btn-green,
     .hero-actions .btn-primary {
-        padding: 12px 26px;
-        font-size: 22px;
+        padding: 11px 20px;
+        font-size: 14px;
         border-radius: 8px;
     }
     .hero-actions .btn-primary {
@@ -277,32 +277,25 @@
         background: rgba(255,255,255,.14);
     }
     .hero-features {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 16px;
-        max-width: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        margin-top: 14px;
     }
     .hero-feat {
         display: flex;
         align-items: center;
-        gap: 10px;
-        background: rgba(255,255,255,.1);
-        border: 1px solid rgba(255,255,255,.18);
-        border-radius: 10px;
+        gap: 8px;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
         color: rgba(255,255,255,.92);
-        line-height: 1.3;
-        padding: 12px 14px;
+        line-height: 1.2;
     }
-    .hero-feat svg { width: 16px; height: 16px; fill: #f0a74f; flex-shrink: 0; }
+    .hero-feat svg { width: 15px; height: 15px; fill: #fff; flex-shrink: 0; }
 
     /* ─── INFO STRIP (like mgp benefits bar) ─── */
     .info-strip {
-        background: var(--white);
-        border-bottom: 1px solid #eee;
-        padding: 20px 0;
+        display: none;
     }
     .info-strip-inner {
         display: grid;
@@ -341,8 +334,8 @@
     /* ─── MAIN LAYOUT ─── */
     .page-layout {
         display: flex;
-        gap: 30px;
-        padding: 30px 0 50px;
+        gap: 16px;
+        padding: 14px 0 50px;
     }
 
     /* ─── SIDEBAR ─── */
@@ -350,20 +343,30 @@
 
     .side-menu {
         position: sticky;
-        top: 80px;
+        top: 86px;
         list-style: none;
         background: var(--white);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 6px;
         overflow: hidden;
     }
 
     .side-menu > li { border-bottom: 1px solid #eee; position: relative; }
     .side-menu > li:last-child { border-bottom: none; }
+    .side-menu > li.side-menu-title {
+        background: #1f4369;
+        color: #fff;
+        border-bottom: 0;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .4px;
+        text-transform: uppercase;
+        padding: 11px 14px;
+    }
     .side-menu > li > a {
         display: block;
-        padding: 11px 16px;
-        font-size: 14px;
+        padding: 9px 14px;
+        font-size: 13px;
         font-weight: 500;
         color: var(--text);
         transition: all .15s;
@@ -388,12 +391,41 @@
     }
     .side-menu .sub-items a {
         display: block;
-        padding: 7px 16px 7px 28px;
-        font-size: 13px;
+        padding: 6px 14px 6px 24px;
+        font-size: 12px;
         color: var(--muted);
         transition: color .15s;
     }
     .side-menu .sub-items a:hover { color: var(--primary); }
+    .side-actions {
+        position: sticky;
+        top: 540px;
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .side-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        min-height: 34px;
+        padding: 6px 10px;
+    }
+    .side-action-catalog {
+        background: var(--accent);
+        color: #fff;
+    }
+    .side-action-catalog:hover { background: #ff9b2f; }
+    .side-action-call {
+        background: #fff;
+        border: 1px solid #cfd6df;
+        color: #2a3f58;
+    }
+    .side-action-call:hover { border-color: #9eb1c6; }
 
     /* ─── CATEGORY CARDS GRID (remgydromash squares) ─── */
     .cat-grid {
@@ -603,8 +635,9 @@
     .contact-info a:hover { text-decoration: underline; }
     .messenger-row { display: flex; gap: 10px; margin: 16px 0; }
     .msg-link {
-        display: inline-flex; align-items: center; gap: 6px;
-        padding: 9px 18px; border-radius: 8px;
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        min-width: 146px;
+        padding: 10px 12px; border-radius: 8px;
         font-size: 13px; font-weight: 700; color: #fff;
         transition: opacity .2s;
     }
@@ -679,50 +712,18 @@
     .site-footer {
         background: var(--dark);
         color: #fff;
-        padding: 50px 0 30px;
+        padding: 42px 0 34px;
     }
     .footer-grid {
         display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-    .footer-col h4 {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .footer-col ul {
-        list-style: none;
-        padding: 0;
-    }
-    .footer-col ul li {
-        margin-bottom: 10px;
-    }
-    .footer-col ul li a {
-        color: rgba(255,255,255,.6);
-        font-size: 14px;
-        transition: color .2s;
-    }
-    .footer-col ul li a:hover {
-        color: #fff;
-    }
-    .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,.1);
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
+        grid-template-columns: 1.3fr 1fr 1.1fr;
+        gap: 28px;
+        margin-bottom: 0;
     }
     .footer-brand {
         display: flex;
         flex-direction: column;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     .footer-brand .f-logo-img {
         height: auto;
@@ -738,16 +739,45 @@
     .footer-copy {
         font-size: 12px;
         color: rgba(255,255,255,.4);
-        margin-top: 10px;
+        margin-top: 8px;
     }
     .footer-policy {
         font-size: 12px;
         color: rgba(255,255,255,.4);
+        line-height: 1.5;
     }
     .footer-policy a {
         color: rgba(255,255,255,.6);
         text-decoration: underline;
     }
+    .footer-col-nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+    }
+    .footer-nav-link {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: .4px;
+        text-transform: uppercase;
+    }
+    .footer-nav-link:hover { color: #ff9b2f; }
+    .footer-col-contacts h4 {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .footer-contact-line {
+        color: rgba(255,255,255,.82);
+        font-size: 13px;
+        margin-bottom: 6px;
+        line-height: 1.45;
+    }
+    .footer-contact-line a { color: inherit; }
+    .footer-contact-line a:hover { color: #fff; }
 
     .social-links {
         display: flex;
@@ -770,10 +800,13 @@
     /* ─── MOBILE ─── */
     @media (max-width: 1024px) {
         .footer-grid { grid-template-columns: 1fr 1fr; }
+        .footer-col-nav { gap: 14px; }
+        .footer-nav-link { font-size: 18px; }
     }
     @media (max-width: 768px) {
         .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-        .footer-bottom { flex-direction: column; text-align: center; }
+        .footer-col-nav { gap: 12px; }
+        .footer-nav-link { font-size: 16px; }
     }
     .mobile-toggle {
         display: none;
@@ -790,6 +823,8 @@
         .page-layout { flex-direction: column; }
         .sidebar { width: 100%; }
         .side-menu { position: static; }
+        .side-actions { position: static; margin-top: 10px; flex-direction: row; }
+        .side-action { flex: 1; }
         .cat-grid { grid-template-columns: repeat(2, 1fr); }
         .sub-sections { grid-template-columns: 1fr; }
         .contact-grid { grid-template-columns: 1fr; }
@@ -800,10 +835,10 @@
         .header-cta { padding: 10px 14px; font-size: 13px; }
         .hero-panel { padding: 20px 22px 18px; }
         .hero-banner h1 { font-size: 42px; max-width: 640px; }
-        .hero-banner .hero-desc { font-size: 30px; max-width: 640px; }
+        .hero-banner .hero-desc { font-size: 16px; max-width: 640px; }
         .hero-actions .btn-green,
-        .hero-actions .btn-primary { font-size: 18px; }
-        .hero-features { grid-template-columns: 1fr 1fr; }
+        .hero-actions .btn-primary { font-size: 14px; }
+        .hero-features { gap: 14px; }
     }
     @media (max-width: 768px) {
         .top-bar { display: none; }
@@ -823,15 +858,17 @@
         .main-nav.open .nav-catalog { margin: 0; border-radius: 0; padding: 14px 20px; }
         .main-nav.open a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.1); }
         .cat-grid { grid-template-columns: 1fr; }
-        .hero-banner { padding: 12px 0 18px; }
+        .hero-banner { padding: 0; margin-bottom: 14px; }
         .hero-panel { padding: 16px 14px; border-radius: 12px; }
         .hero-tagline { margin-bottom: 10px; font-size: 11px; letter-spacing: 1px; }
         .hero-banner h1 { font-size: 28px; }
-        .hero-banner .hero-desc { font-size: 18px; }
+        .hero-banner .hero-desc { font-size: 15px; }
         .hero-actions { gap: 10px; }
         .hero-actions .btn-green,
         .hero-actions .btn-primary { width: 100%; justify-content: center; font-size: 16px; }
-        .hero-features { grid-template-columns: 1fr; gap: 10px; }
+        .hero-features { gap: 10px; }
+        .side-actions { flex-direction: column; }
+        .msg-link { width: 100%; min-width: 0; }
         .info-strip-inner { grid-template-columns: 1fr 1fr; gap: 14px; }
     }
     </style>
@@ -877,75 +914,6 @@
     </div>
 </header>
 
-<!-- ═══ HERO BANNER ═══ -->
-<div class="hero-banner">
-    <div class="container">
-        <div class="hero-panel">
-            <div class="hero-tagline">Сервисное направление компании MGP</div>
-            <h1>MGP-СЕРВИС — ремонт и диагностика<br>гидравлического оборудования</h1>
-            <p class="hero-desc">Сервисное направление компании MGP. Ремонт российских и импортных агрегатов. Гарантия на все виды работ.</p>
-            <div class="hero-actions">
-                <a href="#contacts" class="btn-green">Оставить заявку</a>
-                <a href="tel:+79037970774" class="btn-primary">Получить консультацию</a>
-            </div>
-            <div class="hero-features">
-                <div class="hero-feat">
-                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    Российские и импортные агрегаты
-                </div>
-                <div class="hero-feat">
-                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-                    Диагностика и испытания на стендах
-                </div>
-                <div class="hero-feat">
-                    <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
-                    Уплотнения и РВД за 1 день
-                </div>
-                <div class="hero-feat">
-                    <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm4 4v2h10V7H7zm0 4v6h10v-6H7z"/></svg>
-                    Комплектующие в каталоге MGP
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══ INFO STRIP ═══ -->
-<div class="info-strip">
-    <div class="container">
-        <div class="info-strip-inner">
-            <div class="info-item">
-                <div class="info-item-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
-                </div>
-                <div class="info-item-title">Гарантия</div>
-                <div class="info-item-text">На все виды работ</div>
-            </div>
-            <div class="info-item">
-                <div class="info-item-icon">
-                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-                </div>
-                <div class="info-item-title">Срочный ремонт</div>
-                <div class="info-item-text">От 1 рабочего дня</div>
-            </div>
-            <div class="info-item">
-                <div class="info-item-icon">
-                    <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
-                </div>
-                <div class="info-item-title">Диагностика</div>
-                <div class="info-item-text">Стендовые испытания</div>
-            </div>
-            <div class="info-item">
-                <div class="info-item-icon">
-                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </div>
-                <div class="info-item-title">Всегда на связи</div>
-                <div class="info-item-text">+7 903 797-07-74</div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- ═══ PAGE ═══ -->
 <div class="container">
     <div class="page-layout">
@@ -953,6 +921,7 @@
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <ul class="side-menu" id="sideNav">
+                <li class="side-menu-title">Услуги Сервиса</li>
                 <li><a href="#about">О компании</a></li>
                 <li>
                     <a href="#pumps">Ремонт гидронасосов</a>
@@ -986,10 +955,39 @@
                 <li><a href="https://m-g-p.ru/" target="_blank">Комплектующие ↗</a></li>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
+            <div class="side-actions">
+                <a href="https://m-g-p.ru/" target="_blank" class="side-action side-action-catalog">Каталог комплектующих ↗</a>
+                <a href="tel:+79037970774" class="side-action side-action-call">Позвонить</a>
+            </div>
         </aside>
 
         <!-- CONTENT -->
         <main class="content-area" id="services">
+            <div class="hero-banner">
+                <div class="hero-panel">
+                    <div class="hero-tagline">Сервисное направление компании MGP</div>
+                    <h1>MGP-СЕРВИС — ремонт и диагностика<br>гидравлического оборудования</h1>
+                    <p class="hero-desc">Сервисное направление компании MGP. Ремонт российских и импортных агрегатов. Гарантия на все виды работ.</p>
+                    <div class="hero-features">
+                        <div class="hero-feat">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            Гарантия на работы
+                        </div>
+                        <div class="hero-feat">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                            Срочный ремонт
+                        </div>
+                        <div class="hero-feat">
+                            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2"/></svg>
+                            Диагностика на стенде
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#contacts" class="btn-green">Оставить заявку</a>
+                        <a href="tel:+79037970774" class="btn-primary">Получить консультацию</a>
+                    </div>
+                </div>
+            </div>
 
             <!-- CATEGORY CARDS -->
             <div class="cat-grid">
@@ -1278,7 +1276,7 @@
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col">
+            <div class="footer-col footer-col-brand">
                 <div class="footer-brand">
                     <img src="images/logo-mgp.png" alt="MGP" class="f-logo-img">
                     <span class="f-sub">СЕРВИС</span>
@@ -1288,6 +1286,18 @@
                     Я согласен на обработку персональных данных<br>
                     <a href="#">Политика конфиденциальности</a>
                 </div>
+            </div>
+            <div class="footer-col footer-col-nav">
+                <a href="#about" class="footer-nav-link">О Компании</a>
+                <a href="#services" class="footer-nav-link">Услуги</a>
+                <a href="https://m-g-p.ru/" target="_blank" class="footer-nav-link">Магазин MGP</a>
+            </div>
+            <div class="footer-col footer-col-contacts">
+                <h4>Контакты</h4>
+                <div class="footer-contact-line">+7 (903) 797-07-74</div>
+                <div class="footer-contact-line">8 (800) 301-27-12</div>
+                <div class="footer-contact-line">Зеленоград, 2-й Западный пр-д 2, стр 3</div>
+                <div class="footer-contact-line"><a href="mailto:89037970774@mail.ru">89037970774@mail.ru</a></div>
                 <div class="social-links">
                     <a href="https://www.youtube.com/channel/UCwzvVl4WUStHBxAMWD2J7Jw" target="_blank" class="social-link youtube" title="YouTube">
                         <img src="https://img.icons8.com/?size=100&id=108794&format=png&color=000000" alt="YouTube">
@@ -1305,42 +1315,6 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_logo_2025.png/250px-Max_logo_2025.png" alt="Max">
                     </a>
                 </div>
-            </div>
-            <div class="footer-col">
-                <h4>О компании</h4>
-                <ul>
-                    <li><a href="#about">О сервисе</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="#">Новости</a></li>
-                    <li><a href="#">Прайс</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Услуги</h4>
-                <ul>
-                    <li><a href="#pumps">Ремонт гидронасосов</a></li>
-                    <li><a href="#motors">Ремонт гидромоторов</a></li>
-                    <li><a href="#cylinders">Ремонт гидроцилиндров</a></li>
-                    <li><a href="#diagnostics">Диагностика</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>МАГАЗИН MGP</h4>
-                <ul>
-                    <li><a href="https://m-g-p.ru/" target="_blank">Основной сайт MGP</a></li>
-                    <li><a href="https://m-g-p.ru/catalog" target="_blank">Каталог товаров</a></li>
-                    <li><a href="https://m-g-p.ru/dostavka" target="_blank">Доставка</a></li>
-                    <li><a href="https://m-g-p.ru/oplata" target="_blank">Оплата</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-links">
-                <a href="#about">О компании</a>
-                <a href="#services">Услуги</a>
-                <a href="#contacts">Контакты</a>
-                <a href="#">Новости</a>
-                <a href="#">Прайс</a>
             </div>
         </div>
     </div>
