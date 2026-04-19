@@ -1838,6 +1838,13 @@
             }
         }
     </style>
+    <script>
+        // Превентивный сброс скролла на мобилках
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
 </head>
 
 <body>
@@ -2112,7 +2119,7 @@
                             src="https://remgydromash.ru/upload/iblock/b86/b86d672316ecbc0a1ca81b4a4322263f.jpg"
                             alt="Ремонт гидрооборудования">
                         <div class="cat-card-body">
-                            <div class="cat-card-title">1. Ремонт
+                            <div class="cat-card-title">Ремонт
                                 гидрооборудования</div>
                             <span class="cat-card-btn">Подробнее</span>
                         </div>
@@ -2122,7 +2129,7 @@
                             src="https://remgydromash.ru/upload/iblock/9fa/9fa76008a8d104cbadd0fb155a5a7c4b.jpg"
                             alt="Диагностика и испытания">
                         <div class="cat-card-body">
-                            <div class="cat-card-title">2. Диагностика и
+                            <div class="cat-card-title">Диагностика и
                                 испытания</div>
                             <span class="cat-card-btn">Подробнее</span>
                         </div>
@@ -2132,7 +2139,7 @@
                             src="https://remgydromash.ru/upload/iblock/466/4664cef46a34f8a4a40b109762d5a385.jpg"
                             alt="Изготовление уплотнений и РВД">
                         <div class="cat-card-body">
-                            <div class="cat-card-title">3. Изготовление
+                            <div class="cat-card-title">Изготовление
                                 уплотнений и РВД</div>
                             <span class="cat-card-btn">Подробнее</span>
                         </div>
@@ -2142,7 +2149,7 @@
                             src="https://remgydromash.ru/upload/iblock/59b/59bcb9e90e6d64d80bd581c52bb6ad4b.jpg"
                             alt="Комплектующие MGP">
                         <div class="cat-card-body">
-                            <div class="cat-card-title" style="color: var(--accent);">4.
+                            <div class="cat-card-title" style="color: var(--accent);">
                                 Комплектующие MGP</div>
                             <span class="cat-card-btn">Перейти в каталог
                             </span>
@@ -2532,7 +2539,13 @@
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
             }
+            // Форсируем скролл наверх чуть-чуть с задержкой, 
+            // чтобы перебить логику памяти мобильных браузеров 
             window.scrollTo(0, 0);
+            setTimeout(function() { window.scrollTo(0, 0); }, 50);
+            window.addEventListener('load', function() {
+                setTimeout(function() { window.scrollTo(0, 0); }, 150);
+            });
             var sections = document.querySelectorAll('.section[id]');
             var sideLinks = document.querySelectorAll('#sideNav a[href^="#"]');
             var sidebar = document.querySelector('.sidebar');
@@ -2636,9 +2649,9 @@
                 }
             });
 
-            var askQuestionBtn = document.querySelector('.faq-btn');
-            if (askQuestionBtn) {
-                askQuestionBtn.addEventListener('click', function () {
+            var askQuestionBtns = document.querySelectorAll('.faq-btn');
+            askQuestionBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     setTimeout(function () {
                         var serviceField = document.getElementById('service');
                         var commentField = document.getElementById('comment');
@@ -2652,7 +2665,7 @@
                         }
                     }, 450);
                 });
-            }
+            });
 
             document.getElementById('request-form').addEventListener('submit', function (e) {
                 e.preventDefault();
