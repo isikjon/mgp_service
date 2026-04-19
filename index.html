@@ -105,11 +105,11 @@
         flex-shrink: 0;
     }
     .logo-link .logo-img {
-        height: 30px;
+        height: 56px;
         width: auto;
     }
     .logo-link .logo-service {
-        font-size: 10px;
+        font-size: 22px;
         font-weight: 500;
         letter-spacing: 5px;
         text-transform: uppercase;
@@ -139,7 +139,7 @@
         color: #fff;
     }
     .main-nav .nav-catalog {
-        background: var(--accent);
+        background: #2c3f51;
         color: #fff;
         font-weight: 700;
         padding: 11px 22px;
@@ -182,7 +182,7 @@
         line-height: 1.2;
     }
     .header-email {
-        font-size: 12px;
+        font-size: 14px;
         color: rgba(255,255,255,.75);
         line-height: 1.2;
         font-weight: 500;
@@ -193,19 +193,30 @@
         gap: 6px;
     }
     .header-messengers a {
-        width: 30px;
-        height: 30px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         transition: transform .2s, opacity .2s;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.24);
     }
     .header-messengers a:hover { transform: translateY(-1px); opacity: .9; }
     .header-messengers .wa { background: #25D366; }
     .header-messengers .tg { background: #0088cc; }
-    .header-messengers .mx { background: #168ACD; }
-    .header-messengers svg { width: 14px; height: 14px; fill: #fff; }
+    .header-messengers .mx {
+        background: #fff;
+        border-color: rgba(85,133,189,.65);
+    }
+    .header-messengers svg { width: 18px; height: 18px; fill: #fff; }
+    .header-messengers img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
     .header-cta {
         display: inline-flex;
         align-items: center;
@@ -215,15 +226,19 @@
         font-weight: 700;
         font-size: 14px;
         line-height: 1;
-        padding: 12px 22px;
-        border-radius: 8px;
+        width: 220px;
+        height: 48px;
+        padding: 0 18px;
+        border-radius: 10px;
         border: 2px solid rgba(0,0,0,.25);
+        box-shadow: 0 4px 10px rgba(0,0,0,.22);
         white-space: nowrap;
-        transition: background .2s, border-color .2s;
+        transition: opacity .2s, transform .2s, box-shadow .2s;
     }
     .header-cta:hover {
-        background: #000;
-        border-color: #000;
+        opacity: .8;
+        transform: translateY(-1px) scale(1.03);
+        box-shadow: 0 7px 14px rgba(0,0,0,.3);
     }
 
     /* ─── HERO BANNER ─── */
@@ -274,12 +289,21 @@
         font-size: 14px;
         border-radius: 8px;
     }
+    .hero-actions .btn-green {
+        width: 220px;
+        height: 48px;
+        padding: 0 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
     .hero-actions .btn-primary {
         border: 1px solid rgba(255,255,255,.35);
         background: rgba(44,62,80,.85);
     }
     .hero-actions .btn-primary:hover {
-        background: rgba(255,255,255,.14);
+        opacity: .8;
     }
     .hero-features {
         display: flex;
@@ -341,25 +365,31 @@
         display: flex;
         gap: 16px;
         padding: 14px 0 50px;
+        position: relative;
     }
 
     /* ─── SIDEBAR ─── */
-    .sidebar { width: var(--sidebar-w); flex-shrink: 0; }
+    .sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        position: absolute;
+        top: 14px;
+        left: 0;
+    }
 
     .side-menu {
-        position: sticky;
-        top: 86px;
+        position: static;
         list-style: none;
         background: var(--white);
         border: 1px solid var(--border);
         border-radius: 6px;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .side-menu > li { border-bottom: 1px solid #eee; position: relative; }
     .side-menu > li:last-child { border-bottom: none; }
     .side-menu > li.side-menu-title {
-        background: #1f4369;
+        background: #2c3f51;
         color: #fff;
         border-bottom: 0;
         font-size: 13px;
@@ -386,13 +416,13 @@
 
     .side-menu .sub-items {
         list-style: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .3s ease;
+        max-height: none;
+        overflow: visible;
+        transition: none;
         background: #fafbfc;
     }
     .side-menu > li:hover .sub-items {
-        max-height: 300px;
+        max-height: none;
     }
     .side-menu .sub-items a {
         display: block;
@@ -403,8 +433,7 @@
     }
     .side-menu .sub-items a:hover { color: var(--primary); }
     .side-actions {
-        position: sticky;
-        top: 540px;
+        position: static;
         margin-top: 12px;
         display: flex;
         flex-direction: column;
@@ -478,7 +507,11 @@
     .cat-card-btn:hover { background: var(--accent-hover); }
 
     /* ─── CONTENT AREA ─── */
-    .content-area { flex: 1; min-width: 0; }
+    .content-area {
+        flex: 1;
+        min-width: 0;
+        margin-left: calc(var(--sidebar-w) + 16px);
+    }
 
     /* ─── SECTIONS ─── */
     .section {
@@ -523,12 +556,11 @@
         font-size: 14px;
         font-weight: 600;
         padding: 10px 24px;
-        border-radius: 2px;
         border: none;
         cursor: pointer;
-        transition: background .2s;
+        transition: opacity .2s;
     }
-    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-primary:hover { opacity: .8; }
 
     .btn-green {
         display: inline-block;
@@ -704,11 +736,25 @@
         padding: 12px;
         font-size: 15px;
         font-weight: 700;
-        border-radius: 2px;
         cursor: pointer;
-        transition: background .2s;
+        transition: opacity .2s;
     }
-    .btn-submit:hover { background: #3a8c3a; }
+    .btn-submit:hover { opacity: .8; }
+
+    /* Единое скругление для кнопок сайта */
+    .main-nav .nav-catalog,
+    .header-cta,
+    .hero-actions .btn-green,
+    .hero-actions .btn-primary,
+    .btn-primary,
+    .btn-green,
+    .faq-btn,
+    .side-action,
+    .cat-card-btn,
+    .btn-submit,
+    .msg-link {
+        border-radius: 6px;
+    }
     .form-note {
         font-size: 11px; color: #aaa; text-align: center; margin-top: 8px;
     }
@@ -731,12 +777,12 @@
         margin-bottom: 12px;
     }
     .footer-brand .f-logo-img {
-        height: auto;
-        width: 65px;
+        height: 56px;
+        width: auto;
     }
     .footer-brand .f-sub {
-        font-size: 10px;
-        letter-spacing: 3px;
+        font-size: 22px;
+        letter-spacing: 5px;
         text-transform: uppercase;
         color: rgba(255,255,255,.5);
         margin-top: 3px;
@@ -767,8 +813,14 @@
         font-weight: 700;
         letter-spacing: .4px;
         text-transform: uppercase;
+        display: inline-block;
+        transition: transform .2s ease, opacity .2s ease, letter-spacing .2s ease;
     }
-    .footer-nav-link:hover { color: #ff9b2f; }
+    .footer-nav-link:hover {
+        transform: translateX(4px);
+        opacity: .86;
+        letter-spacing: .7px;
+    }
     .footer-col-contacts h4 {
         color: #fff;
         font-size: 18px;
@@ -791,16 +843,24 @@
         flex-wrap: wrap;
     }
     .social-link {
-        width: 34px;
-        height: 34px;
-        background: none;
+        width: 36px;
+        height: 36px;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all .2s;
+        overflow: hidden;
     }
-    .social-link:hover { transform: translateY(-2px); opacity: 0.8; }
-    .social-link img { width: 30px; height: 30px; object-fit: contain; }
+    .social-link:hover { transform: translateY(-2px) scale(1.04); opacity: 0.92; }
+    .social-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 
     /* ─── MOBILE ─── */
     @media (max-width: 1024px) {
@@ -826,9 +886,10 @@
 
     @media (max-width: 1024px) {
         .page-layout { flex-direction: column; }
-        .sidebar { width: 100%; }
+        .sidebar { width: 100%; position: static; top: auto; left: auto; }
         .side-menu { position: static; }
         .side-actions { position: static; margin-top: 10px; flex-direction: row; }
+        .content-area { margin-left: 0; }
         .side-action { flex: 1; }
         .cat-grid { grid-template-columns: repeat(2, 1fr); }
         .sub-sections { grid-template-columns: 1fr; }
@@ -836,7 +897,7 @@
         .info-strip-inner { grid-template-columns: repeat(2, 1fr); }
         .main-nav a, .main-nav .nav-catalog { padding: 16px 10px; font-size: 13px; }
         .header-phone { font-size: 13px; }
-        .header-email { font-size: 11px; }
+        .header-email { font-size: 14px; }
         .header-cta { padding: 10px 14px; font-size: 13px; }
         .hero-panel { padding: 20px 22px 18px; }
         .hero-banner h1 { font-size: 42px; max-width: 640px; }
@@ -860,7 +921,7 @@
             background: var(--primary);
             z-index: 999;
         }
-        .main-nav.open .nav-catalog { margin: 0; border-radius: 0; padding: 14px 20px; }
+        .main-nav.open .nav-catalog { margin: 0; border-radius: 6px; padding: 14px 20px; }
         .main-nav.open a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.1); }
         .cat-grid { grid-template-columns: 1fr; }
         .hero-banner { padding: 0; margin-bottom: 14px; }
@@ -914,10 +975,10 @@
                                 <svg viewBox="0 0 24 24"><path
                                         d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" /></svg>
                             </a>
-                            <a href="https://max.ru/" target="_blank" class="mx"
-                                title="Max">
-                                <svg viewBox="0 0 24 24"><path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z" /></svg>
+                            <a href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4"
+                                target="_blank" class="mx" title="Max">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_logo_2025.png/250px-Max_logo_2025.png"
+                                    alt="Max">
                             </a>
                         </div>
                         <a href="#contacts" class="header-cta">Оставить
@@ -978,14 +1039,12 @@
                         </li>
                         <li><a href="#seals">Изготовление уплотнений</a></li>
                         <li><a href="#rvd">Изготовление РВД</a></li>
-                        <li><a href="https://m-g-p.ru/"
-                                target="_blank">Комплектующие ↗</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                     <div class="side-actions">
                         <a href="https://m-g-p.ru/" target="_blank"
                             class="side-action side-action-catalog">Каталог
-                            комплектующих ↗</a>
+                            комплектующих</a>
                         <a href="tel:+79037970774"
                             class="side-action side-action-call">Позвонить</a>
                     </div>
