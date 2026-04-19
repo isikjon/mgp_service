@@ -1078,7 +1078,8 @@
         }
 
         .footer-brand .f-logo-img {
-            width: 143px;
+            width: 103px;
+            height: 56px;
         }
 
         .footer-brand .f-sub {
@@ -2542,9 +2543,9 @@
             // Форсируем скролл наверх чуть-чуть с задержкой, 
             // чтобы перебить логику памяти мобильных браузеров 
             window.scrollTo(0, 0);
-            setTimeout(function() { window.scrollTo(0, 0); }, 50);
-            window.addEventListener('load', function() {
-                setTimeout(function() { window.scrollTo(0, 0); }, 150);
+            setTimeout(function () { window.scrollTo(0, 0); }, 50);
+            window.addEventListener('load', function () {
+                setTimeout(function () { window.scrollTo(0, 0); }, 150);
             });
             var sections = document.querySelectorAll('.section[id]');
             var sideLinks = document.querySelectorAll('#sideNav a[href^="#"]');
