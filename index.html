@@ -11,6 +11,10 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
             rel="stylesheet">
+        <link rel="stylesheet" href="css/megashop.min.css">
+        <link rel="stylesheet" href="css/megashop.shop.min.css">
+        <link rel="stylesheet" href="css/megashop.vendors.min.css">
+        <link rel="stylesheet" href="css/user.css">
 
         <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,6 +44,7 @@
         background: var(--white);
         color: var(--text);
         line-height: 1.6;
+        padding-top: 0 !important;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -921,13 +926,44 @@
     .mobile-toggle span {
         width: 22px; height: 2px; background: #fff; border-radius: 1px;
     }
+    .mobile-call-btn {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 118px;
+        height: 52px;
+        border-radius: 18px;
+        background: #2e3138;
+        color: #fff;
+        flex-shrink: 0;
+    }
+    .mobile-call-btn .phone-ic,
+    .mobile-call-btn .chev-ic {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    .mobile-call-btn .phone-ic {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+    }
+    .mobile-call-btn .chev-ic {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2.8;
+    }
+    .r-hidden-desktop { display: none; }
+    .r-header-menu__dropdown,
+    .r-header-contacts { display: none; }
+    .r-header-menu__dropdown.is-open,
+    .r-header-contacts.is-open { display: block; }
 
     @media (max-width: 1024px) {
         .page-layout { flex-direction: column; }
-        .sidebar { width: 100%; position: static; top: auto; left: auto; }
-        .sidebar.sidebar-at-footer { position: static; bottom: auto; left: auto; }
-        .side-menu { position: static; }
-        .side-actions { position: static; margin-top: 10px; flex-direction: row; }
+        .sidebar { display: none !important; }
         .content-area { margin-left: 0; }
         .side-action { flex: 1; }
         .cat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -946,10 +982,162 @@
         .hero-features { gap: 14px; }
     }
     @media (max-width: 768px) {
+        .site-header > .container { display: none; }
+        .r-hidden-desktop { display: block; }
+        .r-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 84px;
+            padding: 12px 16px;
+            background: #fff;
+            border-bottom: 1px solid #f0f2f5;
+            position: relative;
+            z-index: 1002;
+        }
+        .r-header__list { display: flex; align-items: center; }
+        .r-header__list-item-link { display: inline-flex; align-items: center; justify-content: center; }
+        .r-header-menu__tiggle {
+            border-radius: 14px;
+            color: #8b929c;
+        }
+        .r-header-logo__image {
+            width: auto;
+            height: 48px;
+            object-fit: contain;
+        }
+        .r-header__list-item-link_phone {
+            width: 118px;
+            height: 52px;
+            border-radius: 18px;
+            background: #2e3138;
+            color: #fff;
+        }
+        .r-header-menu__dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            overflow: auto;
+            z-index: 1100;
+            padding: 14px 16px 20px;
+            /* Animation properties */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, visibility 0.35s;
+            display: block !important;
+        }
+        .r-header-menu__dropdown.is-open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .r-header-menu__dropdown-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+        }
+        .r-header-menu__dropdown-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            color: #6f7782;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #f2f4f7;
+        }
+        .r-header-menu__list { list-style: none; margin: 0 0 8px; padding: 0; }
+        .r-header-menu__list .list-rows__item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #eceff3;
+            font-size: 16px;
+            color: #2d3540;
+        }
+        .r-header-contacts {
+            position: fixed;
+            top: 84px;
+            right: 12px;
+            left: 12px;
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 16px 30px rgba(0,0,0,.12);
+            z-index: 1101;
+            padding: 16px;
+        }
+        .r-header-contacts__block { display: block; color: #2d3540; margin-bottom: 10px; }
+        .r-header-contacts__name { font-weight: 700; }
+        .r-header-contacts__hint { color: #7b8491; font-size: 12px; }
+        .r-header-contacts__messengers .messengers {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .r-header-contacts__messengers .image-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f4f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .r-header-contacts__messengers .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .site-header {
+            background: #fff;
+            box-shadow: 0 1px 8px rgba(0,0,0,.08);
+        }
+        .header-inner {
+            min-height: 84px;
+            padding: 12px 0;
+            justify-content: space-between;
+            position: relative;
+        }
+        .logo-link {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0;
+            align-items: center;
+            line-height: 1;
+        }
+        .logo-link .logo-img { height: 48px; }
+        .logo-link .logo-service { display: none; }
         .top-bar { display: none; }
         .header-right { display: none; }
         .main-nav { display: none; }
-        .mobile-toggle { display: flex; }
+        .mobile-toggle {
+            display: flex;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            gap: 7px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 14px;
+            z-index: 2;
+        }
+        .mobile-toggle span {
+            width: 30px;
+            height: 4px;
+            border-radius: 999px;
+            background: #8b929c;
+        }
+        .mobile-toggle span:nth-child(2) { display: none; }
+        .mobile-call-btn { display: inline-flex; z-index: 2; }
         .main-nav.open {
             display: flex;
             flex-direction: column;
@@ -957,11 +1145,26 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: var(--primary);
+            background: #fff;
+            box-shadow: 0 10px 24px rgba(13, 24, 39, .15);
             z-index: 999;
         }
-        .main-nav.open .nav-catalog { margin: 0; border-radius: 6px; padding: 14px 20px; }
-        .main-nav.open a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .main-nav.open .nav-catalog {
+            margin: 10px 12px 12px;
+            border-radius: 10px;
+            padding: 12px 16px;
+            border: none;
+            box-shadow: none;
+            background: #2c3f51;
+            color: #fff;
+        }
+        .main-nav.open a {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e6ebf1;
+            color: #2b3f54;
+            background: transparent;
+        }
+        .main-nav.open a:hover { background: #f4f7fb; color: #1f3041; }
         .cat-grid { grid-template-columns: 1fr; }
         .hero-banner { padding: 0; margin-bottom: 14px; }
         .hero-panel { padding: 16px 14px; border-radius: 12px; }
@@ -975,6 +1178,152 @@
         .side-actions { flex-direction: column; }
         .msg-link { width: 100%; min-width: 0; }
         .info-strip-inner { grid-template-columns: 1fr 1fr; gap: 14px; }
+        .r-header-contacts.custom-contacts-modal {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: calc(100vh - 68px);
+            background: #fff;
+            z-index: 2000;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            border-top: 1px solid #eaeaea;
+            /* Animation */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .r-header-contacts.custom-contacts-modal.is-open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .contact-card {
+            border: 1px solid #f0f0f0;
+            padding: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .contact-phone {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 6px;
+        }
+        .contact-hint {
+            font-size: 14px;
+            color: #777;
+        }
+        .contact-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 12px;
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .contact-action svg {
+            width: 24px;
+            height: 24px;
+        }
+        .dashed-link {
+            border-bottom: 1px dashed #aaa;
+            color: #555;
+            font-size: 16px;
+        }
+        .contact-address-card {
+            color: #444;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .contact-address-card .address-title {
+            margin-bottom: 6px;
+        }
+        .btn-route {
+            display: block;
+            background: #cfd2d5;
+            color: #555;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 0;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .contact-soc-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: #333;
+            padding: 10px 4px 30px;
+        }
+        .contact-soc-footer .social-icons {
+            display: flex;
+            gap: 6px;
+        }
+        .contact-soc-footer .social-icons svg,
+        .contact-soc-footer .social-icons img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+        
+        .custom-menu-main {
+            padding: 10px 0;
+        }
+        .custom-menu-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #8b929c;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+        .custom-menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .custom-menu-link {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            text-decoration: none;
+            background: #f8f9fa;
+            border: 1px solid #e9edf2;
+        }
+        .custom-menu-link:hover {
+            background: #e9edf2;
+        }
+        .custom-menu-link.catalog-link {
+            background: #e67e22;
+            color: #fff;
+            font-weight: 700;
+            margin-top: 10px;
+            border-color: #e67e22;
+            justify-content: center;
+        }
     }
     </style>
     </head>
@@ -1010,13 +1359,6 @@
                                     src="https://img.icons8.com/?size=100&id=63306&format=png&color=000000"
                                     alt="Telegram">
                             </a>
-                            <a href="https://rutube.ru/channel/60803933/"
-                                target="_blank" class="social-link rutube"
-                                title="Rutube">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rutube_icon.svg/3840px-Rutube_icon.svg.png"
-                                    alt="Rutube">
-                            </a>
                             <a
                                 href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4"
                                 target="_blank" class="social-link max"
@@ -1031,6 +1373,118 @@
                     </div>
                     <div class="mobile-toggle" id="mobileToggle">
                         <span></span><span></span><span></span>
+                    </div>
+                    <a href="tel:+79037970774" class="mobile-call-btn"
+                        aria-label="Позвонить">
+                        <svg class="phone-ic" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8 9.89a16 16 0 0 0 6.11 6.11l1.44-1.28a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                        <svg class="chev-ic" viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="r-header js-r-header r-container r-hidden-desktop" data-top-offset-block="">
+                <div class="r-header__list r-header__list_left">
+                    <div class="r-header__list-item">
+                        <div class="r-header__list-item-link r-header-menu js-r-header-menu">
+                            <div class="r-header-menu__tiggle js-r-header-menu__tiggle">
+                                <svg viewBox="0 0 24 24" fill="none" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="r-header-menu__dropdown js-r-header-menu__dropdown">
+                                <div class="r-header-menu__dropdown-header">
+                                    <a href="javascript://" class="r-header-menu__dropdown-close js-r-header-menu__dropdown-close">
+                                        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" width="18" height="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="r-header-menu__dropdown-main custom-menu-main">
+                                    <div class="custom-menu-title">Основное меню</div>
+                                    <nav class="custom-menu-nav">
+                                        <a href="#about" class="custom-menu-link">О компании</a>
+                                        <a href="#services" class="custom-menu-link">Сервис</a>
+                                        <a href="#pumps" class="custom-menu-link">Ремонт гидронасосов</a>
+                                        <a href="#motors" class="custom-menu-link">Ремонт гидромоторов</a>
+                                        <a href="#cylinders" class="custom-menu-link">Ремонт гидроцилиндров</a>
+                                        <a href="#contacts" class="custom-menu-link">Контакты</a>
+                                        <a href="https://m-g-p.ru/" target="_blank" class="custom-menu-link catalog-link">Каталог комплектующих</a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="r-header__list-item r-header__list-item_logo">
+                        <a href="/" class="r-header__list-item-link r-header-logo">
+                            <img src="img/mobile_logo.webp" class="r-header-logo__image" alt="M G P">
+                        </a>
+                    </div>
+                </div>
+                <div class="r-header__list r-header__list_right">
+                    <div class="r-header__list-item">
+                        <span class="r-header__list-item-link r-header__list-item-link_phone r-header-contacts-btn">
+                            <span class="icon-box icon-box_size_s">
+                                <span class="icon-box__content">
+                                    <svg class="svg-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8 9.89a16 16 0 0 0 6.11 6.11l1.44-1.28a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </span>
+                                <span class="icon-box__icon">
+                                    <svg class="svg-icon link-box__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 3px;">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="r-header-contacts custom-contacts-modal">
+                <div class="contact-card">
+                    <a href="tel:+79037970774" class="contact-phone">+7 (903) 797-07-74</a>
+                    <a href="tel:88003012712" class="contact-phone" style="margin-top: 8px;">8 (800) 301-27-12</a>
+                    <div class="contact-hint">Звонок бесплатный по РФ</div>
+                </div>
+                
+                <a href="https://t.me/mgp495" class="contact-card contact-action" target="_blank">
+                    <img src="https://img.icons8.com/?size=100&id=63306&format=png&color=000000" alt="Telegram" style="width: 24px; height: 24px;">
+                    <span class="action-text">Написать в Telegram</span>
+                </a>
+                
+                <a href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4" class="contact-card contact-action" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_logo_2025.png/250px-Max_logo_2025.png" alt="Max" style="width: 24px; height: 24px; border-radius: 4px;">
+                    <span class="action-text">Написать в MAX</span>
+                </a>
+                
+                <div class="contact-card contact-action faq-btn">
+                    <span class="dashed-link">Заказать звонок</span>
+                </div>
+
+                <div class="contact-card contact-address-card">
+                    <div class="address-title">Адрес:</div>
+                    <div>Зеленоград, 2-й Западный пр-д 2, стр 3.</div>
+                    <div><strong>Режим работы:</strong> Пн–Пт: 10:00–17:00 (Обед 13:00–14:00)</div>
+                    <a href="https://yandex.ru/maps/-/CDuW6S-8" target="_blank" class="btn-route">Проложить маршрут</a>
+                </div>
+                
+                <div class="contact-soc-footer">
+                    <span>Соцсети и мессенджеры:</span>
+                    <div class="social-icons">
+                        <a href="https://t.me/mgp495" target="_blank">
+                            <img src="https://img.icons8.com/?size=100&id=63306&format=png&color=000000" alt="Telegram">
+                        </a>
+                        <a href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_logo_2025.png/250px-Max_logo_2025.png" alt="Max" style="border-radius: 4px;">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1537,8 +1991,7 @@
                                 class="f-logo-img">
                             <span class="f-sub">СЕРВИС</span>
                         </div>
-                        <p class="footer-copy">2009–2026 © MGP — Магазин
-                            Гидравлики и Пневматики</p>
+                        <p class="footer-copy">2026 © MGP-СЕРВИС</p>
                         <div class="footer-policy">
                             Я согласен на обработку персональных данных<br>
                             <a href="#">Политика конфиденциальности</a>
@@ -1565,6 +2018,13 @@
                                 <img
                                     src="https://img.icons8.com/?size=100&id=63306&format=png&color=000000"
                                     alt="Telegram">
+                            </a>
+                            <a href="https://rutube.ru/channel/60803933/"
+                                target="_blank" class="social-link rutube"
+                                title="Rutube">
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rutube_icon.svg/3840px-Rutube_icon.svg.png"
+                                    alt="Rutube">
                             </a>
                             <a
                                 href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4"
@@ -1637,6 +2097,45 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('mainNav').classList.toggle('open');
     });
 
+    var rMenuToggle = document.querySelector('.js-r-header-menu__tiggle');
+    var rMenuDropdown = document.querySelector('.js-r-header-menu__dropdown');
+    var rMenuClose = document.querySelector('.js-r-header-menu__dropdown-close');
+    var rContactsToggle = document.querySelector('.r-header-contacts-btn');
+    var rContactsPanel = document.querySelector('.r-header-contacts');
+
+    if (rMenuToggle && rMenuDropdown) {
+        rMenuToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            rContactsPanel && rContactsPanel.classList.remove('is-open');
+            rMenuDropdown.classList.toggle('is-open');
+        });
+    }
+
+    if (rMenuClose && rMenuDropdown) {
+        rMenuClose.addEventListener('click', function (e) {
+            e.preventDefault();
+            rMenuDropdown.classList.remove('is-open');
+        });
+    }
+
+    if (rContactsToggle && rContactsPanel) {
+        rContactsToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            rMenuDropdown && rMenuDropdown.classList.remove('is-open');
+            rContactsPanel.classList.toggle('is-open');
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+        if (rMenuDropdown && rMenuToggle && !rMenuDropdown.contains(e.target) && !rMenuToggle.contains(e.target)) {
+            rMenuDropdown.classList.remove('is-open');
+        }
+
+        if (rContactsPanel && rContactsToggle && !rContactsPanel.contains(e.target) && !rContactsToggle.contains(e.target)) {
+            rContactsPanel.classList.remove('is-open');
+        }
+    });
+
     var askQuestionBtn = document.querySelector('.faq-btn');
     if (askQuestionBtn) {
         askQuestionBtn.addEventListener('click', function () {
@@ -1672,5 +2171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     syncSidebarPosition();
 });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/user.js"></script>
     </body>
 </html>
