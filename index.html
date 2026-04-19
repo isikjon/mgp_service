@@ -1007,8 +1007,8 @@
             object-fit: contain;
         }
         .r-header__list-item-link_phone {
-            width: 118px;
-            height: 52px;
+            width: 70px;
+            height: 45px;
             border-radius: 18px;
             background: #2e3138;
             color: #fff;
@@ -1913,6 +1913,7 @@
                                 <div class="map-wrap">
                                     <iframe
                                         src="https://yandex.ru/map-widget/v1/?pt=37.198050,55.998982&z=16&l=map"
+                                        loading="lazy"
                                         allowfullscreen></iframe>
                                 </div>
                             </div>
@@ -2042,6 +2043,10 @@
 
         <script>
 document.addEventListener('DOMContentLoaded', function () {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
     var sections = document.querySelectorAll('.section[id]');
     var sideLinks = document.querySelectorAll('#sideNav a[href^="#"]');
     var sidebar = document.querySelector('.sidebar');
@@ -2117,6 +2122,15 @@ document.addEventListener('DOMContentLoaded', function () {
             rMenuDropdown.classList.remove('is-open');
         });
     }
+
+    var rMenuLinks = document.querySelectorAll('.custom-menu-link');
+    rMenuLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (rMenuDropdown) {
+                rMenuDropdown.classList.remove('is-open');
+            }
+        });
+    });
 
     if (rContactsToggle && rContactsPanel) {
         rContactsToggle.addEventListener('click', function (e) {
