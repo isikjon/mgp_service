@@ -150,10 +150,10 @@
     }
     .main-nav .nav-catalog:hover,
     .main-nav .nav-catalog.active {
-        background: #ff9b2f;
+        background: var(--accent-hover);
         color: #fff;
-        transform: translateY(-1px) scale(1.03);
-        box-shadow: 0 7px 14px rgba(0,0,0,.3);
+        transform: none;
+        box-shadow: none;
     }
 
     .header-right {
@@ -230,15 +230,17 @@
         height: 48px;
         padding: 0 18px;
         border-radius: 10px;
-        border: 2px solid rgba(0,0,0,.25);
-        box-shadow: 0 4px 10px rgba(0,0,0,.22);
+        border: unset !important;
+        box-shadow: none;
         white-space: nowrap;
-        transition: opacity .2s, transform .2s, box-shadow .2s;
+        transition: background .2s, color .2s;
     }
     .header-cta:hover {
-        opacity: .8;
-        transform: translateY(-1px) scale(1.03);
-        box-shadow: 0 7px 14px rgba(0,0,0,.3);
+        background: var(--accent-hover);
+        color: #fff;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
     }
 
     /* ─── HERO BANNER ─── */
@@ -303,7 +305,9 @@
         background: rgba(44,62,80,.85);
     }
     .hero-actions .btn-primary:hover {
-        opacity: .8;
+        background: var(--accent-hover);
+        color: #fff;
+        opacity: 1;
     }
     .hero-features {
         display: flex;
@@ -372,9 +376,13 @@
     .sidebar {
         width: var(--sidebar-w);
         flex-shrink: 0;
+        position: fixed;
+        left: max(15px, calc((100vw - 1360px) / 2 + 15px));
+    }
+    .sidebar.sidebar-at-footer {
         position: absolute;
-        top: 14px;
         left: 0;
+        bottom: 10px;
     }
 
     .side-menu {
@@ -392,6 +400,8 @@
         background: #2c3f51;
         color: #fff;
         border-bottom: 0;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
         font-size: 13px;
         font-weight: 700;
         letter-spacing: .4px;
@@ -416,13 +426,13 @@
 
     .side-menu .sub-items {
         list-style: none;
-        max-height: none;
-        overflow: visible;
-        transition: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .25s ease;
         background: #fafbfc;
     }
     .side-menu > li:hover .sub-items {
-        max-height: none;
+        max-height: 420px;
     }
     .side-menu .sub-items a {
         display: block;
@@ -453,13 +463,20 @@
         background: var(--accent);
         color: #fff;
     }
-    .side-action-catalog:hover { background: #ff9b2f; }
+    .side-action-catalog:hover {
+        background: var(--accent-hover);
+        color: #fff;
+    }
     .side-action-call {
         background: #fff;
         border: 1px solid #cfd6df;
         color: #2a3f58;
     }
-    .side-action-call:hover { border-color: #9eb1c6; }
+    .side-action-call:hover {
+        background: var(--accent-hover);
+        color: #fff;
+        border-color: var(--accent-hover);
+    }
 
     /* ─── CATEGORY CARDS GRID (remgydromash squares) ─── */
     .cat-grid {
@@ -558,9 +575,12 @@
         padding: 10px 24px;
         border: none;
         cursor: pointer;
-        transition: opacity .2s;
+        transition: background .2s, color .2s;
     }
-    .btn-primary:hover { opacity: .8; }
+    .btn-primary:hover {
+        background: var(--accent-hover);
+        color: #fff;
+    }
 
     .btn-green {
         display: inline-block;
@@ -569,12 +589,14 @@
         font-size: 14px;
         font-weight: 600;
         padding: 10px 24px;
-        border-radius: 2px;
         border: none;
         cursor: pointer;
-        transition: background .2s;
+        transition: background .2s, color .2s;
     }
-    .btn-green:hover { background: #000; }
+    .btn-green:hover {
+        background: var(--accent-hover);
+        color: #fff;
+    }
 
     .sub-sections {
         display: grid;
@@ -628,9 +650,12 @@
         border-radius: var(--radius-sm);
         font-size: 14px;
         font-weight: 700;
-        transition: background .2s;
+        transition: background .2s, color .2s;
     }
-    .faq-btn:hover { background: var(--accent-hover); }
+    .faq-btn:hover {
+        background: var(--accent-hover);
+        color: #fff;
+    }
     .faq-list {
         display: flex;
         flex-direction: column;
@@ -676,9 +701,13 @@
         min-width: 146px;
         padding: 10px 12px; border-radius: 8px;
         font-size: 13px; font-weight: 700; color: #fff;
-        transition: opacity .2s;
+        transition: background .2s, color .2s;
     }
-    .msg-link:hover { opacity: .85; }
+    .msg-link:hover {
+        background: var(--accent-hover);
+        color: #fff;
+        opacity: 1;
+    }
     .msg-link.wa { background: #25D366; }
     .msg-link.tg { background: #0088cc; }
     .msg-link.mx { background: #168ACD; }
@@ -737,9 +766,13 @@
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
-        transition: opacity .2s;
+        transition: background .2s, color .2s;
     }
-    .btn-submit:hover { opacity: .8; }
+    .btn-submit:hover {
+        background: var(--accent-hover);
+        color: #fff;
+        opacity: 1;
+    }
 
     /* Единое скругление для кнопок сайта */
     .main-nav .nav-catalog,
@@ -763,7 +796,7 @@
     .site-footer {
         background: var(--dark);
         color: #fff;
-        padding: 42px 0 34px;
+        padding: 7px 0 9px;
     }
     .footer-grid {
         display: grid;
@@ -777,8 +810,8 @@
         margin-bottom: 12px;
     }
     .footer-brand .f-logo-img {
+        width: 143px;
         height: 56px;
-        width: auto;
     }
     .footer-brand .f-sub {
         font-size: 22px;
@@ -887,6 +920,7 @@
     @media (max-width: 1024px) {
         .page-layout { flex-direction: column; }
         .sidebar { width: 100%; position: static; top: auto; left: auto; }
+        .sidebar.sidebar-at-footer { position: static; bottom: auto; left: auto; }
         .side-menu { position: static; }
         .side-actions { position: static; margin-top: 10px; flex-direction: row; }
         .content-area { margin-left: 0; }
@@ -965,16 +999,6 @@
                                 class="header-email">89037970774@mail.ru</a>
                         </div>
                         <div class="header-messengers">
-                            <a href="https://wa.me/79618801466" target="_blank"
-                                class="wa" title="WhatsApp">
-                                <svg viewBox="0 0 24 24"><path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /></svg>
-                            </a>
-                            <a href="https://t.me/mgp495" target="_blank"
-                                class="tg" title="Telegram">
-                                <svg viewBox="0 0 24 24"><path
-                                        d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" /></svg>
-                            </a>
                             <a href="https://max.ru/u/f9LHodD0cOJRyB6ucOlr_EIKJw71Dsj_9n2r5k2nMgM6JKnTUJU4IQnVbn4"
                                 target="_blank" class="mx" title="Max">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_logo_2025.png/250px-Max_logo_2025.png"
@@ -1039,7 +1063,6 @@
                         </li>
                         <li><a href="#seals">Изготовление уплотнений</a></li>
                         <li><a href="#rvd">Изготовление РВД</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
                     </ul>
                     <div class="side-actions">
                         <a href="https://m-g-p.ru/" target="_blank"
@@ -1135,7 +1158,7 @@
                                     style="color: var(--accent);">4.
                                     Комплектующие MGP</div>
                                 <span class="cat-card-btn">Перейти в каталог
-                                    ↗</span>
+                                </span>
                             </div>
                         </a>
                     </div>
@@ -1516,21 +1539,6 @@
                         <div class="footer-contact-line"><a
                                 href="mailto:89037970774@mail.ru">89037970774@mail.ru</a></div>
                         <div class="social-links">
-                            <a
-                                href="https://www.youtube.com/channel/UCwzvVl4WUStHBxAMWD2J7Jw"
-                                target="_blank" class="social-link youtube"
-                                title="YouTube">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=108794&format=png&color=000000"
-                                    alt="YouTube">
-                            </a>
-                            <a href="https://vk.com/magazingidravliki"
-                                target="_blank" class="social-link vk"
-                                title="ВКонтакте">
-                                <img
-                                    src="https://img.icons8.com/?size=100&id=13977&format=png&color=000000"
-                                    alt="VK">
-                            </a>
                             <a href="https://t.me/mgp495" target="_blank"
                                 class="social-link telegram" title="Telegram">
                                 <img
@@ -1562,8 +1570,41 @@
 document.addEventListener('DOMContentLoaded', function () {
     var sections = document.querySelectorAll('.section[id]');
     var sideLinks = document.querySelectorAll('#sideNav a[href^="#"]');
+    var sidebar = document.querySelector('.sidebar');
+    var pageLayout = document.querySelector('.page-layout');
+    var footer = document.querySelector('.site-footer');
+    var sidebarFixedTop = null;
+
+    function cacheSidebarFixedTop() {
+        if (!sidebar || window.innerWidth <= 1024) return;
+        var wasDocked = sidebar.classList.contains('sidebar-at-footer');
+        if (wasDocked) sidebar.classList.remove('sidebar-at-footer');
+        sidebarFixedTop = sidebar.getBoundingClientRect().top;
+        if (wasDocked) sidebar.classList.add('sidebar-at-footer');
+    }
+
+    function syncSidebarPosition() {
+        if (!sidebar || !pageLayout || !footer) return;
+
+        if (window.innerWidth <= 1024) {
+            sidebar.classList.remove('sidebar-at-footer');
+            return;
+        }
+
+        if (sidebarFixedTop === null) {
+            cacheSidebarFixedTop();
+        }
+
+        var footerTop = footer.getBoundingClientRect().top;
+        var sidebarBottomForFixed = sidebarFixedTop + sidebar.offsetHeight;
+        var shouldDockToFooter = footerTop <= sidebarBottomForFixed + 8;
+
+        sidebar.classList.toggle('sidebar-at-footer', shouldDockToFooter);
+    }
 
     window.addEventListener('scroll', function () {
+        syncSidebarPosition();
+
         var cur = '';
         sections.forEach(function (s) {
             if (window.scrollY >= s.offsetTop - 120) cur = s.id;
@@ -1572,6 +1613,11 @@ document.addEventListener('DOMContentLoaded', function () {
             a.classList.toggle('active', a.getAttribute('href').slice(1) === cur && cur !== '');
         });
     }, { passive: true });
+
+    window.addEventListener('resize', function () {
+        sidebarFixedTop = null;
+        syncSidebarPosition();
+    });
 
     document.getElementById('mobileToggle').addEventListener('click', function () {
         document.getElementById('mainNav').classList.toggle('open');
@@ -1607,6 +1653,9 @@ document.addEventListener('DOMContentLoaded', function () {
             self.reset();
         }, 4000);
     });
+
+    cacheSidebarFixedTop();
+    syncSidebarPosition();
 });
 </script>
     </body>
